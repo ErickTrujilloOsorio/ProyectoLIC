@@ -1,3 +1,3 @@
 # ProyectoLIC
 
-Sistema Web Para Cooperativas by Erick Trujillo, is marked with CC0 1.0 
+Sistema Web Para Cooperativas by Erick Trujillo, Oscar Villalobos, is marked with CC0 1.0 
