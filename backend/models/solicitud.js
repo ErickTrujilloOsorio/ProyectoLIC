@@ -1,12 +1,12 @@
-const { Sequelize, Datatype, DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const { sequelize, DataTypes } = require('../config/db.js');
 
-const Solicitud = sequelize.define()(
+const Solicitud = sequelize.define(
     'Solicitud',
     {
         idSolicitud:{
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         },
         cliente_id:{
             type: DataTypes.INTEGER,
@@ -24,5 +24,10 @@ const Solicitud = sequelize.define()(
             type: DataTypes.INTEGER,
             allowNull: false
         }
+    },
+    {
+        tableName: 'solicitudes'
     }
-)
+);
+
+module.exports = Solicitud;
