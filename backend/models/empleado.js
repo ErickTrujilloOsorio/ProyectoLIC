@@ -1,57 +1,61 @@
-const { Sequelize, Datatype, DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const { sequelize, DataTypes } = require('../config/db.js');
 
-const Empleado = sequelize.define()(
-    'Empleado',
+const Empleado = sequelize.define('Empleado',
     {
-        idEmpleado:{
+        idEmpleado: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         },
-        nombre_empleado:{
+        nombre_empleado: {
             type: DataTypes.STRING(50),
             allowNull: false
         },
-        apellido_empleado:{
+        apellido_empleado: {
             type: DataTypes.STRING(50),
             allowNull: false
         },
-        direccion_empleado:{
+        direccion_empleado: {
             type: DataTypes.TEXT('medium'),
             allowNull: false
         },
-        username:{
+        username: {
             type: DataTypes.STRING
             ,
             allowNull: false
         },
-        salario:{
-            type: DataTypes.DOUBLE(8,2),
+        salario: {
+            type: DataTypes.DOUBLE(8, 2),
             allowNull: false
         },
-        correo_cliente:{
+        correo_cliente: {
             type: DataTypes.STRING(50),
             allowNull: false
         },
-        telefono_cliente:{
+        telefono_cliente: {
             type: DataTypes.STRING(8),
             allowNull: false
         },
-        documento1:{
+        documento1: {
             type: DataTypes.TEXT('medium'),
             allowNull: false
         },
-        documento2:{
+        documento2: {
             type: DataTypes.TEXT('medium'),
             allowNull: false
         },
-        documento3:{
+        documento3: {
             type: DataTypes.TEXT('medium'),
             allowNull: false
         },
-        idEstado:{
+        estado_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
+    },
+    {
+        tableName: 'empleados'
     }
 )
+
+module.exports = Empleado;

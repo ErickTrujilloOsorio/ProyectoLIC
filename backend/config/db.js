@@ -1,9 +1,16 @@
-//importamos sequelize 
-const { Sequelize } = requiere('sequelize');
+// Importamos Sequelize 
+const { Sequelize, DataTypes } = require('sequelize');
 
-//pasamos parametros al constructor de sequelize
-const sequelize = new Sequelize('cooperativa_db', 'root', '123456',{
+// Inicializamos objeto de conexion a bd
+const sequelize = new Sequelize('cooperativa_db', 'root', '123456', {
     host: 'localhost',
     dialect: 'mysql'
 });
 
+// Probamos conexión
+sequelize.authenticate()
+    .then(() => console.log('HAY CONEXION'))
+    .catch(e => console.error('No BD ' + e));
+
+// Exportamos instancia
+module.exports = { sequelize, DataTypes };

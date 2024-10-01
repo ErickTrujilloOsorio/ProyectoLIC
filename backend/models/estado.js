@@ -1,20 +1,24 @@
-const { Sequelize, Datatype, DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const { sequelize, DataTypes } = require('../config/db.js');
 
-const Estado = sequelize.define()(
-    'Estado',
+const estado = sequelize.define('estado', 
     {
-        idEstado:{
+        idEstado: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         },
-        estado:{
+        nombre_estado: {
             type: DataTypes.STRING(12),
             allowNull: false
         },
-        descripcion_estado:{
+        descripcion_estado: {
             type: DataTypes.TEXT('medium'),
             allowNull: false
         }
+    },
+    {
+        tableName: 'estados'
     }
-)
+);
+
+module.export = estado;
