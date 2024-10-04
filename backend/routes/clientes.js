@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const app = express();
 const Cliente = require('../models/cliente'); // Asegúrate de importar el modelo correctamente
 
 // Rutas
-router.post('/', async (req, res) => {
+app.post('/', async (req, res) => {
     try {
         console.log('Datos recibidos:', req.body);
         const nuevoCliente = await Cliente.create(req.body);
@@ -19,4 +19,4 @@ router.post('/', async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = app;
