@@ -13,8 +13,9 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 
 // Aplicar esto solo si hay cambios en los modelos
-/*
+
 // Importamos modelos
+/*
 require('./models/tipo_empleado');
 require('./models/estado');
 require('./models/credito');
@@ -32,10 +33,10 @@ app.use('/clientes', clientesRoutes);
 // Conexión a la base de datos y sincronización de modelos
 sequelize.authenticate()
     .then(() => {
-        console.log('Conexión a la base de datos establecida con éxito.');
+        console.log('Conexión a la base de datos establecida');
 
         // HABILITAR SOLAMENTE SI HAY CAMBIOS EN LOS MODELOS
-        // return sequelize.sync();  
+        //return sequelize.sync();  
     })
     .then(() => {
         // console.log('Modelos sincronizados con la base de datos.');

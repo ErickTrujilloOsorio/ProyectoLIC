@@ -1,22 +1,10 @@
 const express = require('express');
-const app = express();
-const Cliente = require('../models/cliente'); // Asegúrate de importar el modelo correctamente
+const router = express.Router();
+const clientesController = require('../controllers/clientesController');
 
 // Rutas
-app.post('/', async (req, res) => {
-    try {
-        console.log('Datos recibidos:', req.body);
-        const nuevoCliente = await Cliente.create(req.body);
-        res.status(201).json(nuevoCliente);
-    } catch (error) {
-        console.error('Error al crear cliente:', error);
-        res.status(500).json({
-            error: 'Error al crear el cliente.',
-            message: error.message,
-            stack: error.stack
-        });
-    }
-});
+router.post('/add', clientesController.agregarCliente);
+router.get('/get', clientesController.consultarClientes);
 
+module.exports = router;
 
-module.exports = app;
