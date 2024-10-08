@@ -3,8 +3,19 @@ const Cliente = require('../models/cliente'); // Importa correctamente el modelo
 // agregar un cliente
 exports.agregarCliente = async (req, res) => {
     try {
-        console.log(req.body);
-        const nuevoCliente = await Cliente.create(req.body);
+        const { nombre, apellido, dui, direccion, correo, telefono, salario, estado} = req.body;
+
+        // Crear nuevo cliente en la base de datos
+        const nuevoCliente = await Cliente.create({
+            nombre,
+            apellido,
+            dui,
+            direccion,
+            correo,
+            telefono,
+            salario,
+            estado
+        });
         res.status(201).json(nuevoCliente);
     } catch (error) {
         res.status(500).json({

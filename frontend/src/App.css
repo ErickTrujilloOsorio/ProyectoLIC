@@ -1,0 +1,199 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%; 
+  margin: 0;
+}
+
+header {
+  background-color: #003366; 
+  color: white; 
+  padding: 1rem 0;
+}
+
+
+input[type="text"], input[type="email"], input[type="tel"], select {
+  width: 100%;
+  border-radius: 5px;
+}
+
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.logo {
+  max-width: 80px; 
+  height: auto;    
+}
+
+
+.navbar {
+  justify-content: center; 
+}
+
+.navbar-nav {
+  flex-direction: row; 
+  justify-content: center; 
+}
+
+
+section {
+  display: none; 
+  padding: 20px;
+
+}
+
+h2, h3 {
+  font-size: 2rem; 
+}
+
+section:first-of-type {
+  display: block; 
+}
+
+@media (max-width: 992px) {
+  .navbar {
+      justify-content: center; 
+  }
+  
+  .navbar-nav {
+      flex-direction: column; 
+      text-align: center; 
+  }
+}
+
+#carouselExampleIndicators {
+  display: block;
+}
+
+#mensajeFormulario {
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+
+main {
+  flex: 1; 
+}
+
+footer {
+  position: relative;
+  height: 60px; ;
+  background-color: #006400 !important; 
+  color: white !important;
+  text-align: center;
+  
+}
+
+
+@media (max-width: 576px) {
+  .input-group {
+      width: 100%;
+  }
+
+  .navbar-nav {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .logo {
+      width: 150px; 
+  }
+
+  h2, h3 {
+      font-size: 1.5rem; 
+  }
+
+  .card {
+      margin-bottom: 15px; 
+  }
+
+  .carousel-item img {
+      max-height: 250px; 
+  }
+}
+
+/* menú */
+.navbar-nav .nav-item {
+  margin-right: 15px; 
+}
+
+
+@media (max-width: 576px) {
+  .navbar-nav .nav-item {
+      margin-right: 0; 
+      margin-bottom: 10px; 
+  }
+}
+
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .input-group {
+      width: 80%; 
+  }
+
+  .navbar-nav {
+      flex-direction: row;
+      justify-content: center;
+  }
+
+  .logo {
+      width: 200px; 
+  }
+}
+
+@media (min-width: 769px) {
+  .input-group {
+      width: 250px; 
+  }
+
+  .logo {
+      width: 250px; 
+  }
+
+  h2, h3 {
+      font-size: 2rem; 
+  }
+}
