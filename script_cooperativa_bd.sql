@@ -8,14 +8,14 @@ CREATE SCHEMA IF NOT EXISTS `cooperativa_db` DEFAULT CHARACTER SET utf8;
 USE `cooperativa_db`;
 
 CREATE TABLE IF NOT EXISTS `cooperativa_db`.`estados` (
-  `idEstado` INT NOT NULL,
+  `idEstado` INT NOT NULL AUTO_INCREMENT,
   `estado` VARCHAR(12) NOT NULL,
   `descripcion_estado` MEDIUMTEXT NULL,
   PRIMARY KEY (`idEstado`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `cooperativa_db`.`tipos_empleados` (
-  `idTipo_empleado` INT NOT NULL,
+  `idTipo_empleado` INT NOT NULL AUTO_INCREMENT,
   `tipo_empleado` VARCHAR(30) NOT NULL,
   `descripcion_tipo_empleado` MEDIUMTEXT NULL,
   PRIMARY KEY (`idTipo_empleado`)
