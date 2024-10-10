@@ -3,25 +3,31 @@ const Cliente = require('../models/cliente'); // Importa correctamente el modelo
 // agregar un cliente
 exports.agregarCliente = async (req, res) => {
     try {
-        const { nombre, apellido, dui, direccion, correo, telefono, salario, estado} = req.body;
+        const { nombre_cliente, apellido_cliente, direccion_cliente, dui, salario, correo_cliente, telefono_cliente, documento1, documento2, documento3, estado_id } = req.body;
 
-        // Crear nuevo cliente en la base de datos
-        const nuevoCliente = await Cliente.create({
-            nombre,
-            apellido,
+        // Verifica que se proporcionen todos los campos necesarios
+        if (!nombre_cliente || !apellido_cliente || !direccion_cliente || !dui || !salario || !correo_cliente || !telefono_cliente || !documento1 || !documento2 || !documento3 || !estado_id) {
+            return res.status(400).json({ message: "Todos los campos son requeridos." });
+        }
+
+        const cliente = await Cliente.create({
+            nombre_cliente,
+            apellido_cliente,
+            direccion_cliente,
             dui,
-            direccion,
-            correo,
-            telefono,
             salario,
-            estado
+            correo_cliente,
+            telefono_cliente,
+            documento1, // Asegúrate de incluir estos campos
+            documento2,
+            documento3,
+            estado_id// O asigna el estado correspondiente
         });
-        res.status(201).json(nuevoCliente);
+
+        res.status(201).json(cliente);
     } catch (error) {
-        res.status(500).json({
-            message: "Error al agregar al cliente: " + error.message,
-            stack: error.stack
-        });
+        console.error(error);
+        res.status(500).json({ message: "Error al agregar al cliente: " + error.message });
     }
 };
 

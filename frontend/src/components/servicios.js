@@ -1,10 +1,18 @@
-import Modal from "./modal";
+import { useState } from "react";
+import Modal from "./modal"; // Importar el componente Modal
 
 export default function Servicios() {
-    function openModal() {
-        Modal.style.display = "block";
-    }
+    const [isModalVisible, setModalVisible] = useState(false);
 
+    // Función para abrir el modal
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    // Función para cerrar el modal
+    const closeModal = () => {
+        setModalVisible(false);
+    };
     return (
         <>
             {/* Menu Servicios */}
@@ -29,7 +37,7 @@ export default function Servicios() {
                             <div className="card-body">
                                 <h5 className="card-title">Servicio 2</h5>
                                 <p className="card-text">Descripción del servicio 2.</p>
-                                <button className="btn btn-primary" id="applyService2">
+                                <button className="btn btn-primary" id="applyService2" onClick={openModal}>
                                     Aplicar
                                 </button>
                             </div>
@@ -41,7 +49,7 @@ export default function Servicios() {
                             <div className="card-body">
                                 <h5 className="card-title">Servicio 3</h5>
                                 <p className="card-text">Descripción del servicio 3.</p>
-                                <button className="btn btn-primary" id="applyService3">
+                                <button className="btn btn-primary" id="applyService3" onClick={openModal}>
                                     Aplicar
                                 </button>
                             </div>
@@ -49,6 +57,16 @@ export default function Servicios() {
                     </div>
                 </div>
             </section>
+
+            <section id="servicios">
+                <h2>Servicios</h2>
+                <button onClick={openModal} className="btn btn-primary">
+                    Abrir Modal
+                </button>
+            </section>
+
+            {/* Pasamos isVisible como prop */}
+            <Modal isVisible={isModalVisible} closeModal={closeModal} />
         </>
 
     );
