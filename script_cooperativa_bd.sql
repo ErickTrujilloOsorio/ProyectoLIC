@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `cooperativa_db`.`empleados` (
   `apellido_empleado` VARCHAR(50) NOT NULL,
   `direccion_empleado` MEDIUMTEXT NOT NULL,
   `username` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(25) NOT NULL,
   `correo_empleado` VARCHAR(50) NOT NULL,
   `telefono_empleado` VARCHAR(8) NOT NULL,
   `tipo_empleado_id` INT NULL,
@@ -119,3 +119,7 @@ CREATE INDEX `credito_id_idx` ON `cooperativa_db`.`solicitudes` (`credito_id` AS
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO estados VALUES (1, 'activo', 'esta activo'), (2, 'inactivo', 'no esta activo');
+INSERT INTO tipos_empleados VALUES (1, 'administrador', 'el admin'), (2, 'empleado', 'no admin');

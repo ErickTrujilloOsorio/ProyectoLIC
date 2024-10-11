@@ -83,6 +83,10 @@ input[type="text"], input[type="email"], input[type="tel"], select {
   gap: 20px; /* Espacio entre los campos */
 }
 
+#contactanos{
+  height: 100%;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
