@@ -42,6 +42,7 @@ export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose
     };
 
     try {
+      console.log(cliente);
       const response = await fetch('http://localhost:5000/clientes/add', {
         method: 'POST',
         headers: {
