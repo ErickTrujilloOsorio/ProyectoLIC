@@ -1,11 +1,11 @@
-const Cliente = require('../models/cliente'); // Importa correctamente el modelo
+const Cliente = require('../models/cliente');
+const Solicitud = require('../models/solicitud');
 
-// agregar un cliente
-exports.agregarCliente = async (req, res) => {
+// Agregar solictud
+exports.agregarSolicitud = async (req, res) => {
     try {
-        const { nombre_cliente, apellido_cliente, direccion_cliente, dui, salario, correo_cliente, telefono_cliente, documento1, documento2, documento3, estado_id } = req.body;
-
-        // Verifica que se proporcionen todos los campos necesarios
+        const { nombre_cliente, apellido_cliente, direccion_cliente, dui, salario, correo_cliente, telefono_cliente, documento1, documento2, documento3, estado_id, credito_id } = req.body;
+                
         if (!nombre_cliente || !apellido_cliente || !direccion_cliente || !dui || !salario || !correo_cliente || !telefono_cliente || !documento1 || !documento2 || !documento3 || !estado_id) {
             return res.status(400).json({ message: "Todos los campos son requeridos." });
         }
@@ -18,13 +18,22 @@ exports.agregarCliente = async (req, res) => {
             salario,
             correo_cliente,
             telefono_cliente,
-            documento1, // Asegúrate de incluir estos campos
+            documento1,
             documento2,
             documento3,
-            estado_id// O asigna el estado correspondiente
+            estado_id
         });
 
-        res.status(201).json(cliente);
+        const cliente_id = cliente.idCliente;
+
+        const agregarSolicitud = await Solicitud.create({
+            cliente_id: cliente_id, 
+            empleado_id: 1,         
+            estado_id: 3,           
+            credito_id: credito_id  
+        });
+
+        res.status(201).json({ cliente, agregarSolicitud });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al agregar al cliente: " + error.message });

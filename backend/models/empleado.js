@@ -1,11 +1,13 @@
 const { sequelize, DataTypes } = require('../config/db.js');
+const solicitud = require('./solicitud.js');
 
-const Empleado = sequelize.define('Empleado',
+const empleado = sequelize.define('empleado',
     {
         idEmpleado: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         nombre_empleado: {
             type: DataTypes.STRING(50),
@@ -48,6 +50,7 @@ const Empleado = sequelize.define('Empleado',
         tableName: 'empleados',
         timestamps: false
     }
-)
+);
 
-module.exports = Empleado;
+
+module.exports = empleado;
