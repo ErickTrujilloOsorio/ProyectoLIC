@@ -20,32 +20,23 @@ const Empleado = sequelize.define('Empleado',
             allowNull: false
         },
         username: {
-            type: DataTypes.STRING
-            ,
+            type: DataTypes.STRING,
             allowNull: false
         },
-        salario: {
-            type: DataTypes.DOUBLE(8, 2),
+        password: {
+            type: DataTypes.STRING(25),
             allowNull: false
         },
-        correo_cliente: {
+        correo_empleado: {
             type: DataTypes.STRING(50),
             allowNull: false
         },
-        telefono_cliente: {
+        telefono_empleado: {
             type: DataTypes.STRING(8),
             allowNull: false
         },
-        documento1: {
-            type: DataTypes.TEXT('medium'),
-            allowNull: false
-        },
-        documento2: {
-            type: DataTypes.TEXT('medium'),
-            allowNull: false
-        },
-        documento3: {
-            type: DataTypes.TEXT('medium'),
+        tipo_Empleado_id: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         estado_id: {
@@ -54,7 +45,8 @@ const Empleado = sequelize.define('Empleado',
         }
     },
     {
-        tableName: 'empleados'
+        tableName: 'empleados',
+        timestamps: false
     }
 )
 
