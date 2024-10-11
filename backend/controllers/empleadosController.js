@@ -66,7 +66,7 @@ exports.check = async (req, res) => {
     }
 };
 
-// Agregar
+// Agregar empleado
 exports.agregarEmpleado = async (req, res) => {
     try {
         const nuevoEmpleado = await Empleado.create(req.body);

@@ -14,14 +14,14 @@ const PORT = process.env.PORT || 5000;
 
 // Aplicar esto solo si hay cambios en los modelos
 // Importamos modelos
-/*
+
 require('./models/tipo_empleado');
 require('./models/estado');
 require('./models/credito');
 require('./models/cliente');
 require('./models/empleado');
 require('./models/solicitud');
-*/
+
 
 // Importamos rutas
 const clientesRoutes = require('./routes/clientes');
@@ -37,7 +37,7 @@ sequelize.authenticate()
         console.log('Conexión a la base de datos establecida');
 
         // USAR SOLAMENTE SI HAY CAMBIOS EN LOS MODELOS
-        //return sequelize.sync();  
+        return sequelize.sync();  
     })
     .then(() => {
         // console.log('Modelos sincronizados con la base de datos.');

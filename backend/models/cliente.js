@@ -1,4 +1,5 @@
 const { sequelize, DataTypes } = require('../config/db.js');
+const solicitud = require('./solicitud.js');
 
 const cliente = sequelize.define('cliente',
     {
@@ -58,6 +59,8 @@ const cliente = sequelize.define('cliente',
         timestamps: false
     }
 );
+
+cliente.hasMany(solicitud, { foreignKey: 'cliente_id' });
 
 // Exportamos
 module.exports = cliente;

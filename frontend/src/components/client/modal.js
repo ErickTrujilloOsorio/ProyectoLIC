@@ -1,7 +1,8 @@
 import { useState } from "react";
-import '../../App.css'; // Si tienes estilos adicionales
+import '../../App.css';
 
-export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose a closeModal
+export default function Modal({ isVisible, closeModal, creditoId }) { 
+  console.log('modal ' + creditoId)
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [direccion, setDireccion] = useState('');
@@ -11,8 +12,7 @@ export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose
   const [telefono, setTelefono] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  // Función para cerrar el modal
-  function handleCloseModal() {
+  const handleCloseModal = () => {
     setNombre('');
     setApellido('');
     setDireccion('');
@@ -21,12 +21,11 @@ export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose
     setCorreo('');
     setTelefono('');
     setMensaje('');
-    closeModal(); // Llamamos la función pasada desde el componente padre
-  }
+    closeModal();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const cliente = {
       nombre_cliente: nombre,
       apellido_cliente: apellido,
@@ -38,11 +37,11 @@ export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose
       documento1: 'no',
       documento2: 'no',
       documento3: 'no',
-      estado_id: 1
+      estado_id: 1,
+      credito_id: creditoId, // Agregar el id del crédito al cuerpo de la solicitud
     };
 
     try {
-      console.log(cliente);
       const response = await fetch('http://localhost:5000/clientes/add', {
         method: 'POST',
         headers: {
@@ -53,10 +52,10 @@ export default function Modal({ isVisible, closeModal }) { // Cambiar de onClose
 
       if (response.ok) {
         setMensaje('Solicitud enviada con éxito.');
-        handleCloseModal(); // Cierra el modal después de enviar la solicitud
+        handleCloseModal();
       } else {
         const errorData = await response.json();
-        setMensaje(`Error al enviar la solicitud: ${errorData.error}`);
+        setMensaje(`Error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (error) {
       setMensaje('Error al conectar con el servidor.');

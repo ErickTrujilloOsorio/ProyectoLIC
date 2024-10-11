@@ -68,8 +68,7 @@ label {
     color: #333;
 }
 
-input[type="text"],
-input[type="password"] {
+#username, #pass{
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -77,7 +76,7 @@ input[type="password"] {
     border: 1px solid #807d7d;
 }
 
-button {
+.button-login{
     width: 100%;
     padding: 12px;
     background-color: #1c6d70;
@@ -126,9 +125,7 @@ button:hover {
         font-size: 18px; 
     }
 
-    input[type="text"],
-    input[type="password"],
-    button {
+    #username, #pass, .buttonLogin {
         padding: 10px; 
     }
 }

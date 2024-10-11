@@ -51,6 +51,7 @@ export default function Login() {
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="username">Usuario:</label>
                             <input
+                                className='input-login'
                                 type="text"
                                 id="username"
                                 name="username"
@@ -59,13 +60,14 @@ export default function Login() {
                             />
                             <label htmlFor="pass">Contraseña:</label>
                             <input
+                                className='input-login'
                                 type="password"
                                 id="pass"
                                 name="pass"
                                 placeholder="Ingrese su contraseña"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <button type="submit">Ingresar</button>
+                            <button type="submit" className='button-login'>Ingresar</button>
                         </form>
                         {error && <p className="error">{error}</p>}
                     </div>
