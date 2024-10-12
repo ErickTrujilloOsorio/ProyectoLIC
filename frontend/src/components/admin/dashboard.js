@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./css/Dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
+import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
 
 
 //importaciones de las paginas 
-import AdminTable from "./AdminTable";
 import MiCuenta from "./micuenta";
-import Empleadotable from "./empleadoTable";
 export default function Dashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
@@ -70,7 +68,7 @@ function Sidebar({ setSelectedOption }) {
       <div className="logo">
         <img src="/img/logo.png" alt="Logo login Administrador" />
       </div>
-      <nav>
+      <nav className="sidebarDashboard">
         <ul>
           <li onClick={() => setSelectedOption("Administradores")}>Administradores</li>
           <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
@@ -107,7 +105,6 @@ function MainContent({ data, selectedOption }) {
 function AdminContent() {
     return (
         <div>
-          <AdminTable />
         </div>
       );
     }
@@ -115,7 +112,6 @@ function AdminContent() {
 function EmpleadosContent() {
   return (
     <div>
-      <Empleadotable />
     </div>
   );
 }

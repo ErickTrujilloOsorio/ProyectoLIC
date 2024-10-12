@@ -50,6 +50,11 @@ export default function Nav() {
                                         Servicios
                                     </a>
                                 </li>
+                                <li className="nav-item">
+                                    <a className="nav-link text-light" href="/agencias" onMouseEnter={(e) => e.currentTarget.classList.add('bg-light', 'text-dark', 'rounded', 'text-primary')} onMouseLeave={(e) => e.currentTarget.classList.remove('bg-light', 'text-dark', 'text-primary')}>
+                                        Agencias
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

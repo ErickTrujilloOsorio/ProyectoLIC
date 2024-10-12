@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './css/micuenta.css'; // Importar los estilos de Mi Cuenta
+import '../../css/micuenta.css'; // Importar los estilos de Mi Cuenta
 
 export default function MiCuenta() {
   const [usuario, setUsuario] = useState("");

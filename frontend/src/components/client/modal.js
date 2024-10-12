@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../../App.css';
+import '../../css/App.css';
 
 export default function Modal({ isVisible, closeModal, creditoId }) { 
   console.log('modal ' + creditoId)
