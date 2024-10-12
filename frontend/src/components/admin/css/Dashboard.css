@@ -1,0 +1,65 @@
+.dashboard {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(74, 93, 115, 0.9); 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo h2 {
+    margin-bottom: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+nav ul li:hover {
+    background-color: rgba(188, 193, 216, 0.9);
+    border-radius: 5px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content h1 {
+    margin-bottom: 50px;
+}
+
+.graphics {
+    display: flex;
+    gap: 50px;
+}
+
+.graphics img {
+    width: 150px;
+    height: 150px;
+}
+
+.logo img {
+    width: 100px;  /* Ajusta el ancho a lo que necesites */
+    height: auto;  /* Mantiene la relación de aspecto */
+    margin-bottom: 20px;  /* Espaciado debajo del logo */
+}

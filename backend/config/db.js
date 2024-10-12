@@ -2,7 +2,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 // Inicializamos objeto de conexion a bd
-const sequelize = new Sequelize('cooperativa_db', 'root', '123456', {
+const sequelize = new Sequelize('cooperativa_db', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
 });
