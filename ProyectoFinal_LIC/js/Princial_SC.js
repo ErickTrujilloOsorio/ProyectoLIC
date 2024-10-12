@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const quienesSomosSection = document.getElementById("quienes-somos");
     const serviciosSection = document.getElementById("servicios");
     const contactanosSection = document.getElementById("contactanos");
+    const agenciasSection = document.getElementById("agencias");
 
     // Función para abrir el modal
     function openModal() {
@@ -45,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             quienesSomosSection.style.display = "none";
             serviciosSection.style.display = "none";
             contactanosSection.style.display = "none";
+            agenciasSection.style.display = "none";
 
             // Muestra la sección correspondiente
             if (targetId === '#inicio') {
