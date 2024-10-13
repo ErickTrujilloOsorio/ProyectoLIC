@@ -1,11 +1,12 @@
 const { sequelize, DataTypes } = require('../config/db.js');
 
-const estado = sequelize.define('estado', 
+const estado = sequelize.define('estado',
     {
         idEstado: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         nombre_estado: {
             type: DataTypes.STRING(12),
@@ -17,7 +18,8 @@ const estado = sequelize.define('estado',
         }
     },
     {
-        tableName: 'estados'
+        tableName: 'estados',
+        timestamps: false
     }
 );
 

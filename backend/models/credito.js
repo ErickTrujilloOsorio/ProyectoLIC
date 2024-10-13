@@ -1,6 +1,6 @@
 const { sequelize, DataTypes } = require('../config/db.js');
 
-const Credito = sequelize.define("Credito",
+const credito = sequelize.define("credito",
     {
         idCredito:{
             type: DataTypes.INTEGER,
@@ -9,6 +9,10 @@ const Credito = sequelize.define("Credito",
         },
         nombre_credito:{
             type: DataTypes.STRING(50),
+            allowNull: false
+        },
+        interes:{
+            type: DataTypes.DOUBLE(4,2),
             allowNull: false
         },
         descripcion_credito:{
@@ -21,4 +25,4 @@ const Credito = sequelize.define("Credito",
     }
 );
 
-module.exports = Credito;
+module.exports = credito;
