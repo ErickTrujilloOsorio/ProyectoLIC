@@ -114,7 +114,7 @@ exports.eliminarEmpleado = async (req, res) => {
 
 // Actualizar empleado
 exports.actualizarEmpleado = async (req, res) => {
-    const { id } = req.params; // Se asume que el ID se pasa como parámetro en la ruta
+    const { id } = req.params;
 
     try {
         const empleado = await Empleado.findByPk(id);

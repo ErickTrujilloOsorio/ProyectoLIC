@@ -1,7 +1,6 @@
 const { sequelize, DataTypes } = require('../config/db.js');
-const solicitud = require('./solicitudes.js');
 
-const empleado = sequelize.define('empleado',
+const Empleado = sequelize.define('Empleado',
     {
         idEmpleado: {
             type: DataTypes.INTEGER,
@@ -52,5 +51,4 @@ const empleado = sequelize.define('empleado',
     }
 );
 
-
-module.exports = empleado;
+module.exports = Empleado;

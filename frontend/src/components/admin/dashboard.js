@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
 import Empleados from "./empleado";
-import Solicitudes from "./solicitudes";
+import Solicitudes from "./solicitud";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -70,7 +70,7 @@ function Sidebar({ setSelectedOption }) {
       <nav className="sidebarDashboard">
         <ul>
           <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
-          <li onClick={() => setSelectedOption("Solicitudes")}>Solicitudes</li>
+          <li onClick={() => setSelectedOption("Solicitud")}>Solicitudes</li>
           <li onClick={() => logout()}>Cerrar Sesión</li>
         </ul>
       </nav>
@@ -90,7 +90,7 @@ function MainContent({ data, selectedOption }) {
       <h1>{selectedOption === 'Bienvenido' ? `Bienvenido ${data ? data.nombre : "Cargando..."}` : selectedOption}</h1>
       <div className="graphics">
         {selectedOption === 'Empleados' && <EmpleadosContent />}
-        {selectedOption === 'Solicitudes' && <SolicitudesContent />}
+        {selectedOption === 'Solicitud' && <SolicitudesContent />}
       </div>
     </div>
   );

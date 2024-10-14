@@ -1,5 +1,5 @@
 const Cliente = require('../models/cliente');
-const Solicitud = require('../models/solicitudes');
+const Solicitud = require('../models/solicitud');
 
 // Agregar solictud
 exports.agregarSolicitud = async (req, res) => {
@@ -40,15 +40,18 @@ exports.agregarSolicitud = async (req, res) => {
     }
 };
 
-// Función para consultar todos los clientes
-exports.consultarClientes = async (req, res) => {
+
+exports.obtenerClientePorId = async (req, res) => {
+    const { idCliente } = req.params;
     try {
-        const clientes = await Cliente.findAll();
-        res.status(200).json(clientes);
+        const cliente = await Cliente.findByPk(idCliente);
+        if (!cliente) {
+            return res.status(404).json({ message: 'Cliente no encontrado' });
+        }
+        console.log(cliente);
+        res.status(200).json(cliente);
     } catch (error) {
-        res.status(500).json({
-            message: "Error al consultar los clientes: " + error.message,
-            stack: error.stack
-        });
+        console.error('Error al obtener el cliente:', error);
+        res.status(500).json({ message: "Error al obtener el cliente", error: error.message });
     }
 };

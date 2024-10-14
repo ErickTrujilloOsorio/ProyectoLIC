@@ -20,7 +20,7 @@ require('./models/estado');
 require('./models/credito');
 require('./models/cliente');
 require('./models/empleado');
-require('./models/solicitudes');
+require('./models/solicitud');
 
 
 // Importamos rutas
@@ -39,7 +39,10 @@ sequelize.authenticate()
         console.log('Conexión a la base de datos establecida');
 
         // USAR SOLAMENTE SI HAY CAMBIOS EN LOS MODELOS
-        return sequelize.sync();  
+        return sequelize.sync({
+            force: false
+        });
+
     })
     .then(() => {
         // console.log('Modelos sincronizados con la base de datos.');

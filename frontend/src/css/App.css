@@ -136,6 +136,14 @@ button.btn {
   z-index: 1000;
 }
 
+.modalAsignacion{
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: auto;
+  max-width: 100%;
+}
+
 .modalEmpleados {
   position: fixed;
   top: 0;

@@ -16,15 +16,14 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
 
     useEffect(() => {
         if (empleado) {
-            // Si hay un empleado seleccionado, cargar sus datos en el formulario
             setNombre(empleado.nombre_empleado);
             setApellido(empleado.apellido_empleado);
             setDireccion(empleado.direccion_empleado);
             setUsername(empleado.username);
             setCorreo(empleado.correo_empleado);
             setTelefono(empleado.telefono_empleado);
-            setEstado(empleado.estado_id); // Asegúrate de que este valor sea correcto
-            setTipoEmpleado(empleado.tipo_Empleado_id); // Asegúrate de que este valor sea correcto
+            setEstado(empleado.estado_id);
+            setTipoEmpleado(empleado.tipo_Empleado_id); 
             setIsUpdating(true);
         } else {
             // Reinicia el formulario si no hay empleado
@@ -59,7 +58,7 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
             apellido_empleado: apellido,
             direccion_empleado: direccion,
             username,
-            ...(isUpdating ? {} : { password }), // Solo incluir la contraseña si es nuevo
+            ...(isUpdating ? {} : { password }), 
             correo_empleado: correo,
             telefono_empleado: telefono,
             tipo_Empleado_id: tipoEmpleado,

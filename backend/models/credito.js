@@ -1,7 +1,6 @@
 const { sequelize, DataTypes } = require('../config/db.js');
-const solicitud = require('./solicitudes.js');
 
-const credito = sequelize.define("credito",
+const Credito = sequelize.define("Credito",
     {
         idCredito:{
             type: DataTypes.INTEGER,
@@ -26,8 +25,4 @@ const credito = sequelize.define("credito",
     }
 );
 
-credito.hasMany(solicitud, {
-    foreignKey: 'creditoId'
-});
-
-module.exports = credito;
+module.exports = Credito;

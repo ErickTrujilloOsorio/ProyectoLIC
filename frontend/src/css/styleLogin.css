@@ -86,7 +86,7 @@ label {
     cursor: pointer;
 }
 
-button:hover {
+.button-login :hover {
     background-color: #2998a0;
 }
 
