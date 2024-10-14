@@ -23,4 +23,4 @@ const estado = sequelize.define('estado',
     }
 );
 
-module.export = estado;
+module.exports = estado;

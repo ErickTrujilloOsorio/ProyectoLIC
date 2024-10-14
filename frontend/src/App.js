@@ -7,7 +7,6 @@ import Servicios from "./components/client/servicios";
 import Login from "./components/admin/login";
 import Footer from "./components/client/footer";
 import Dashboard from "./components/admin/dashboard";
-import MiCuenta from "./components/admin/micuenta";
 import Agencias from "./components/client/agencias"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -87,14 +86,6 @@ function App() {
             element={
               <PrivateLayout>
                 <Dashboard />
-              </PrivateLayout>
-            }
-          />
-          <Route
-            path="admin/micuenta"
-            element={
-              <PrivateLayout>
-                <MiCuenta />
               </PrivateLayout>
             }
           />

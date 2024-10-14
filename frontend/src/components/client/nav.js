@@ -2,7 +2,7 @@ export default function Nav() {
     return (
         <>
             {/* Sección encabezado  */}
-            <header className="bg-primary text-white p-3">
+            <header className="bg-success text-white p-3">
                 <div className="container d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center"> {/* Alineamos verticalmente */}
                         <a href="/">

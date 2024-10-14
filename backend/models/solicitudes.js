@@ -7,13 +7,13 @@ const empleado = require('./empleado.js');
 const solicitud = sequelize.define(
     'solicitud',
     {
-        idSolicitud:{
+        idSolicitud: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        cliente_id:{
+        cliente_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -21,7 +21,7 @@ const solicitud = sequelize.define(
                 key: 'idCliente'
             }
         },
-        empleado_id:{
+        empleado_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -29,7 +29,7 @@ const solicitud = sequelize.define(
                 key: 'idEmpleado'
             }
         },
-        estado_id:{
+        estado_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -37,7 +37,7 @@ const solicitud = sequelize.define(
                 key: 'idEstado'
             }
         },
-        credito_id:{
+        credito_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -52,4 +52,10 @@ const solicitud = sequelize.define(
     }
 );
 
+solicitud.associate = function (models) {
+    Solicitud.belongsTo(models.Cliente, { foreignKey: 'cliente_id' });
+    Solicitud.belongsTo(models.Empleado, { foreignKey: 'empleado_id' });
+    Solicitud.belongsTo(models.Credito, { foreignKey: 'credito_id' });
+    Solicitud.belongsTo(models.Estado, { foreignKey: 'estado_id' });
+};
 module.exports = solicitud;

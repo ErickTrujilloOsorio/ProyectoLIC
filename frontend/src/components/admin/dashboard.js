@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
 import Empleados from "./empleado";
+import Solicitudes from "./solicitudes";
 
-
-//importaciones de las paginas 
-import MiCuenta from "./micuenta";
 export default function Dashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
@@ -73,18 +71,17 @@ function Sidebar({ setSelectedOption }) {
         <ul>
           <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
           <li onClick={() => setSelectedOption("Solicitudes")}>Solicitudes</li>
-          <li onClick={() => setSelectedOption("Clientes")}>Clientes</li>
-          <li onClick={() => setSelectedOption("Mi Cuenta")}>Mi Cuenta</li>
-          <li onClick={() => handleLogout()}>Cerrar Sesión</li>
+          <li onClick={() => logout()}>Cerrar Sesión</li>
         </ul>
       </nav>
     </div>
   );
 }
 
-function handleLogout() {
+function logout() {
   localStorage.removeItem("token");
   window.location.href = "/admin/login";
+  sessionStorage.clear();
 }
 
 function MainContent({ data, selectedOption }) {
@@ -94,19 +91,10 @@ function MainContent({ data, selectedOption }) {
       <div className="graphics">
         {selectedOption === 'Empleados' && <EmpleadosContent />}
         {selectedOption === 'Solicitudes' && <SolicitudesContent />}
-        {selectedOption === 'Clientes' && <ClientesContent />}
-        {selectedOption === 'Mi Cuenta' && <MiCuentaContent />}
       </div>
     </div>
   );
 }
-
-function AdminContent() {
-    return (
-        <div>
-        </div>
-      );
-    }
 
 function EmpleadosContent() {
   return (
@@ -115,18 +103,8 @@ function EmpleadosContent() {
 }
 
 function SolicitudesContent() {
-  return <div>Contenido de Solicitudes</div>;
-}
-
-function ClientesContent() {
-  return <div>Contenido de Clientes</div>;
-}
-
-function MiCuentaContent() {
   return(
-    <div>
-        <MiCuenta/>
-    </div>
-  ); 
-
+    <Solicitudes/>
+  )
 }
+

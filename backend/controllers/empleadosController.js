@@ -30,7 +30,11 @@ exports.login = async (req, res) => {
         );
 
         return res.json({ 
-            nombre: `${empleado.nombre_empleado} ${empleado.apellido_empleado}`, 
+            nombre: `${empleado.nombre_empleado}`,
+            apellido: `${empleado.apellido_empleado}`, 
+            correo: `${empleado.correo_empleado}`,
+            username: `${empleado.username}`,
+            telefono: `${empleado.telefono_empleado}`,
             token: token 
         });
     } catch (error) {

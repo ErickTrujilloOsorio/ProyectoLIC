@@ -27,6 +27,11 @@ export default function Login() {
             if (res.ok) {
                 const data = await res.json();
                 localStorage.setItem('token', data.token);
+                sessionStorage.setItem('nombre', data.nombre); 
+                sessionStorage.setItem('apellido', data.apellido); 
+                sessionStorage.setItem('username', data.username); 
+                sessionStorage.setItem('correo', data.correo); 
+                sessionStorage.setItem('telefono', data.telefono); 
                 navigate('/admin/dashboard');
             } else {
                 const err = await res.json();

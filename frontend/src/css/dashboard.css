@@ -11,6 +11,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    text-align: center;
 }
 
 .logo h2 {
@@ -20,6 +21,8 @@
 .sidebarDashboard ul {
     list-style-type: none;
     padding: 0;
+    text-align: center;
+    width: 100%;
 }
 
 .sidebarDashboard ul li {
@@ -28,6 +31,7 @@
     text-align: center;
     padding: 10px;
     width: 100%;
+    justify-content: center; /* Alinea horizontalmente el contenido */
 }
 
 .sidebarDashboard ul li:hover {
@@ -36,21 +40,25 @@
 }
 
 .main-content {
-    flex-grow: 1;
-    padding: 50px;
+    margin: 10px 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    text-align: justify;
+    padding: 25px;
+    width: 100%;
 }
 
 .main-content h1 {
-    margin-bottom: 50px;
+    text-align: center; /* Alinea el título en el centro */
 }
 
 .graphics {
     display: flex;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
 .graphics img {
@@ -61,5 +69,8 @@
 .logo img {
     width: 100px;       
     height: auto;  
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
