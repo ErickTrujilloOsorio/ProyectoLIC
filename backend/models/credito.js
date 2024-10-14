@@ -1,4 +1,5 @@
 const { sequelize, DataTypes } = require('../config/db.js');
+const solicitud = require('./solicitudes.js');
 
 const credito = sequelize.define("credito",
     {
@@ -24,5 +25,9 @@ const credito = sequelize.define("credito",
         tableName: 'creditos'
     }
 );
+
+credito.hasMany(solicitud, {
+    foreignKey: 'creditoId'
+});
 
 module.exports = credito;

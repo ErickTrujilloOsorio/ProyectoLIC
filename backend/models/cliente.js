@@ -60,7 +60,12 @@ const cliente = sequelize.define('cliente',
     }
 );
 
-cliente.hasMany(solicitud, { foreignKey: 'cliente_id' });
+cliente.associate = function(){
+    cliente.hasMany(sequelize.model.solicitud, {
+        foreignKey: 'clienteId'
+    });
+}
+
 
 // Exportamos
 module.exports = cliente;

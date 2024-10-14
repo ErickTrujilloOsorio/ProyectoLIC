@@ -1,8 +1,8 @@
 const Solicitud = require('../models/solicitudes');
-const Cliente = require('../models/clientes');
-const Empleado = require('../models/empleados');
-const Credito = require('../models/creditos');
-const Estado = require('../models/estados');
+const Cliente = require('../models/cliente');
+const Empleado = require('../models/empleado');
+const Credito = require('../models/credito');
+const Estado = require('../models/estado');
 
 exports.obtenerSolicitudes = async (req, res) => {
     try {

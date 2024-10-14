@@ -1,5 +1,5 @@
 const Cliente = require('../models/cliente');
-const Solicitud = require('../models/solicitud');
+const Solicitud = require('../models/solicitudes');
 
 // Agregar solictud
 exports.agregarSolicitud = async (req, res) => {

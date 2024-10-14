@@ -52,10 +52,9 @@ const solicitud = sequelize.define(
     }
 );
 
-solicitud.associate = function (models) {
-    Solicitud.belongsTo(models.Cliente, { foreignKey: 'cliente_id' });
-    Solicitud.belongsTo(models.Empleado, { foreignKey: 'empleado_id' });
-    Solicitud.belongsTo(models.Credito, { foreignKey: 'credito_id' });
-    Solicitud.belongsTo(models.Estado, { foreignKey: 'estado_id' });
-};
+solicitud.belongsTo(cliente, { foreignKey: 'cliente_id' });
+solicitud.belongsTo(empleado, { foreignKey: 'empleado_id' });
+solicitud.belongsTo(credito, { foreignKey: 'credito_id' });
+solicitud.belongsTo(estado, { foreignKey: 'estado_id' });
+
 module.exports = solicitud;

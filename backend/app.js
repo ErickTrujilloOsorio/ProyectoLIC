@@ -20,7 +20,7 @@ require('./models/estado');
 require('./models/credito');
 require('./models/cliente');
 require('./models/empleado');
-require('./models/solicitud');
+require('./models/solicitudes');
 
 
 // Importamos rutas
