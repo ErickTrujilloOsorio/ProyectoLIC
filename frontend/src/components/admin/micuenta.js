@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../css/micuenta.css'; // Importar los estilos de Mi Cuenta
+import '../../css/App.css'; // Importar el archivo CSS general
 
 export default function MiCuenta() {
   const [usuario, setUsuario] = useState("");
@@ -7,17 +7,19 @@ export default function MiCuenta() {
   const [apellidos, setApellidos] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Estado para controlar la visibilidad del mensaje de éxito
 
-  // Este efecto se ejecuta cuando el componente se monta para cargar los datos del usuario
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const empleadoId = localStorage.getItem("empleadoId");
 
     if (!token) {
       setError("No autorizado. Por favor, inicie sesión.");
       return;
     }
 
-    fetch("http://localhost:5000/api/usuario", {
+    fetch(`http://localhost:5000/admin/${empleadoId}`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -31,9 +33,9 @@ export default function MiCuenta() {
         return res.json();
       })
       .then((data) => {
-        setUsuario(data.usuario);
-        setNombres(data.nombres);
-        setApellidos(data.apellidos);
+        setUsuario(data.username);
+        setNombres(data.nombre_empleado);
+        setApellidos(data.apellido_empleado);
         setLoading(false);
       })
       .catch((err) => {
@@ -44,18 +46,23 @@ export default function MiCuenta() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
+    setShowModal(true); // Mostrar el modal cuando se intente enviar el formulario
+  };
 
-    fetch("http://localhost:5000/api/usuario", {
+  const handleConfirm = () => {
+    const token = localStorage.getItem("token");
+    const empleadoId = localStorage.getItem("empleadoId");
+
+    fetch(`http://localhost:5000/admin/${empleadoId}`, {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        usuario,
-        nombres,
-        apellidos,
+        username: usuario,
+        nombre_empleado: nombres,
+        apellido_empleado: apellidos,
       }),
     })
       .then((res) => {
@@ -65,11 +72,18 @@ export default function MiCuenta() {
         return res.json();
       })
       .then((data) => {
-        alert("Datos actualizados correctamente");
+        setShowModal(false); // Ocultar el modal después de confirmar
+        setShowSuccessMessage(true); // Mostrar el mensaje de éxito
+        setTimeout(() => setShowSuccessMessage(false), 3000); // Ocultar el mensaje después de 3 segundos
       })
       .catch((err) => {
         setError(err.message);
+        setShowModal(false); // Ocultar el modal en caso de error
       });
+  };
+
+  const handleCancel = () => {
+    setShowModal(false); // Ocultar el modal cuando se cancela
   };
 
   if (loading) {
@@ -81,42 +95,80 @@ export default function MiCuenta() {
   }
 
   return (
-    <div className="mi-cuenta-container">
-      <form className="mi-cuenta-form" onSubmit={handleSubmit}>
-        <h2>Mi Cuenta</h2>
+    <div className="container mt-1">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8 col-lg-6"> {/* Ajustar el tamaño de la columna para ser responsivo */}
+          <div className="card">
+            <div className="card-body">
+              {showSuccessMessage && (
+                <div className="alert alert-success" role="alert">
+                  Datos actualizados correctamente
+                </div>
+              )}
+              <form onSubmit={handleSubmit}>
+                <div className="form-group mb-3">
+                  <label htmlFor="usuario">Usuario:</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    id="usuario"
+                    value={usuario}
+                    onChange={(e) => setUsuario(e.target.value)}
+                    required
+                  />
+                </div>
 
-        <div className="form-group">
-          <label>Usuario:</label>
-          <input
-            type="text"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            required
-          />
+                <div className="form-group mb-3">
+                  <label htmlFor="nombres">Nombres:</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    id="nombres"
+                    value={nombres}
+                    onChange={(e) => setNombres(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="form-group mb-3">
+                  <label htmlFor="apellidos">Apellidos:</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    id="apellidos"
+                    value={apellidos}
+                    onChange={(e) => setApellidos(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="text-center">
+                  <button type="submit" className="btn btn-primary btn-lg">Editar</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div className="form-group">
-          <label>Nombres:</label>
-          <input
-            type="text"
-            value={nombres}
-            onChange={(e) => setNombres(e.target.value)}
-            required
-          />
+      {/* Modal de confirmación */}
+      <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!showModal}>
+        <div className="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center"> {/* Ajustado para centrar */}
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Confirmar Edición</h5>
+              <button type="button" className="btn-close" aria-label="Close" onClick={handleCancel}></button>
+            </div>
+            <div className="modal-body">
+              ¿Estás seguro de que deseas guardar los cambios?
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={handleCancel}>Cancelar</button>
+              <button type="button" className="btn btn-primary" onClick={handleConfirm}>Aceptar</button>
+            </div>
+          </div>
         </div>
-
-        <div className="form-group">
-          <label>Apellidos:</label>
-          <input
-            type="text"
-            value={apellidos}
-            onChange={(e) => setApellidos(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit" className="btn-editar">Editar</button>
-      </form>
+      </div>
     </div>
   );
 }

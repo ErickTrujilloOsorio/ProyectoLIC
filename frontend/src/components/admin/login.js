@@ -23,10 +23,11 @@ export default function Login() {
                 },
                 body: JSON.stringify({ username: email, password: pass })
             });
-            
+
             if (res.ok) {
                 const data = await res.json();
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('empleadoId', data.idEmpleado); // Guardando el empleadoId en localStorage
                 navigate('/admin/dashboard');
             } else {
                 const err = await res.json();

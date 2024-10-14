@@ -3,24 +3,28 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  height: 100%; 
+html,
+body {
+  height: 100%;
   margin: 0;
 }
 
 header {
-  background-color: #003366; 
-  color: white; 
+  background-color: #003366;
+  color: white;
   padding: 1rem 0;
 }
 
 
-input[type="text"], input[type="email"], input[type="tel"], select {
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
   width: 100%;
   border-radius: 5px;
 }
@@ -42,7 +46,8 @@ input[type="text"], input[type="email"], input[type="tel"], select {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  width: 90%; /* Más ancho */
+  width: 90%;
+  /* Más ancho */
   max-width: 900px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -61,7 +66,8 @@ input[type="text"], input[type="email"], input[type="tel"], select {
 }
 
 .modal-dialog {
-  max-width: 800px; /* Puedes ajustar el ancho */
+  max-width: 800px;
+  /* Puedes ajustar el ancho */
 }
 
 .modal-content {
@@ -79,11 +85,13 @@ input[type="text"], input[type="email"], input[type="tel"], select {
 
 .modal-form {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-  gap: 20px; /* Espacio entre los campos */
+  grid-template-columns: 1fr 1fr;
+  /* Dos columnas iguales */
+  gap: 20px;
+  /* Espacio entre los campos */
 }
 
-#contactanos{
+#contactanos {
   height: 100%;
 }
 
@@ -101,7 +109,8 @@ input[type="text"], input[type="email"], input[type="tel"], select {
 }
 
 button.btn {
-  grid-column: span 2; /* El botón toma todo el ancho */
+  grid-column: span 2;
+  /* El botón toma todo el ancho */
   justify-self: center;
   padding: 10px 20px;
   font-size: 18px;
@@ -145,48 +154,49 @@ button.btn {
   display: none;
 }
 
-.card{
+.card {
   height: 100%;
 }
 
 .logo {
-  max-width: 80px; 
-  height: auto;    
+  max-width: 80px;
+  height: auto;
 }
 
 
 .navbar {
-  justify-content: center; 
+  justify-content: center;
 }
 
 .navbar-nav {
-  flex-direction: row; 
-  justify-content: center; 
+  flex-direction: row;
+  justify-content: center;
 }
 
 
 section {
-  display: none; 
+  display: none;
   padding: 20px;
 
 }
 
-h2, h3 {
-  font-size: 2rem; 
+h2,
+h3 {
+  font-size: 2rem;
 }
 
 section:first-of-type {
-  display: block; 
+  display: block;
 }
 
 @media (max-width: 992px) {
   .navbar {
-      justify-content: center; 
+    justify-content: center;
   }
-  
+
   .navbar-nav {
-      flex-direction: column; 
-      text-align: center; 
+    flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -202,85 +212,124 @@ section:first-of-type {
 
 
 main {
-  flex: 1; 
+  flex: 1;
 }
 
 footer {
   position: relative;
-  height: 60px; ;
-  background-color: #006400 !important; 
+  height: 60px;
+  ;
+  background-color: #006400 !important;
   color: white !important;
   text-align: center;
-  
+
 }
 
 
 @media (max-width: 576px) {
   .input-group {
-      width: 100%;
+    width: 100%;
   }
 
   .navbar-nav {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .logo {
-      width: 150px; 
+    width: 150px;
   }
 
-  h2, h3 {
-      font-size: 1.5rem; 
+  h2,
+  h3 {
+    font-size: 1.5rem;
   }
 
   .card {
-      margin-bottom: 15px; 
+    margin-bottom: 15px;
   }
 
   .carousel-item img {
-      max-height: 250px; 
+    max-height: 250px;
   }
 }
 
 /* menú */
 .navbar-nav .nav-item {
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 
 @media (max-width: 576px) {
   .navbar-nav .nav-item {
-      margin-right: 0; 
-      margin-bottom: 10px; 
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
 
 
 @media (min-width: 577px) and (max-width: 768px) {
   .input-group {
-      width: 80%; 
+    width: 80%;
   }
 
   .navbar-nav {
-      flex-direction: row;
-      justify-content: center;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .logo {
-      width: 200px; 
+    width: 200px;
   }
 }
 
 @media (min-width: 769px) {
   .input-group {
-      width: 250px; 
+    width: 250px;
   }
 
   .logo {
-      width: 250px; 
+    width: 250px;
   }
 
-  h2, h3 {
-      font-size: 2rem; 
+  h2,
+  h3 {
+    font-size: 2rem;
   }
+}
+
+.action-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.action-icon:hover {
+  color: #007bff;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.modal-footer .btn {
+  padding: 0.25rem 0.5rem;
+  /* Ajusta el tamaño del botón */
+  font-size: 0.875rem;
+  /* Ajusta el tamaño del texto */
+  margin-right: 0.5rem;
+  /* Agrega margen derecho para espaciado */
+}
+
+.modal-footer .btn:last-child {
+  margin-right: 0;
+  /* Elimina el margen derecho del último botón */
+}
+
+.form-container {
+  max-width: 100%; /* Para asegurar que ocupe todo el ancho disponible */
+  padding: 20px; /* Para mejorar el espaciado */
+}
+
+.card-body {
+  padding: 20px;
 }

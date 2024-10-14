@@ -7,6 +7,10 @@ import Servicios from "./components/client/servicios";
 import Login from "./components/admin/login";
 import Footer from "./components/client/footer";
 import Dashboard from "./components/admin/dashboard";
+import Administradores from "./components/admin/administradores";
+import Empleados from "./components/admin/empleados";
+import Solicitudes from "./components/admin/solicitudes";
+import Clientes from "./components/admin/clientes";
 import MiCuenta from "./components/admin/micuenta";
 import Agencias from "./components/client/agencias"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -68,7 +72,7 @@ function App() {
             path="/agencias"
             element={
               <PublicLayout>
-                <Agencias/>
+                <Agencias />
               </PublicLayout>
             }
           />
@@ -91,6 +95,14 @@ function App() {
             }
           />
           <Route
+            path="admin/administradores"
+            element={
+              <PrivateLayout>
+                <Administradores />
+              </PrivateLayout>
+            }
+          />
+          <Route
             path="admin/micuenta"
             element={
               <PrivateLayout>
@@ -102,6 +114,23 @@ function App() {
             path="admin/empleados"
             element={
               <PrivateLayout>
+                <Empleados />
+              </PrivateLayout>
+            }
+          />
+          <Route
+            path="admin/solicitudes"
+            element={
+              <PrivateLayout>
+                <Solicitudes />
+              </PrivateLayout>
+            }
+          />
+          <Route
+            path="admin/clientes"
+            element={
+              <PrivateLayout>
+                <Clientes />
               </PrivateLayout>
             }
           />

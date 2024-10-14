@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
 
-
-//importaciones de las paginas 
+// Importaciones de las páginas 
 import MiCuenta from "./micuenta";
+import Administradores from "./administradores";
+import Empleados from "./empleados";
+import Clientes from "./clientes";
+import Solicitudes from "./solicitudes";
+
 export default function Dashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
@@ -66,7 +70,9 @@ function Sidebar({ setSelectedOption }) {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src="/img/logo.png" alt="Logo login Administrador" />
+        <a href="/admin/dashboard">
+          <img src="/img/logo.png" alt="Logo login Administrador" />
+        </a>
       </div>
       <nav className="sidebarDashboard">
         <ul>
@@ -89,7 +95,7 @@ function handleLogout() {
 
 function MainContent({ data, selectedOption }) {
   return (
-    <div className="main-content">
+    <div className={`main-content ${selectedOption === 'Bienvenido' ? 'welcome' : ''}`}>
       <h1>{selectedOption === 'Bienvenido' ? `Bienvenido ${data ? data.nombre : "Cargando..."}` : selectedOption}</h1>
       <div className="graphics">
         {selectedOption === 'Administradores' && <AdminContent />}
@@ -103,32 +109,41 @@ function MainContent({ data, selectedOption }) {
 }
 
 function AdminContent() {
-    return (
-        <div>
-        </div>
-      );
-    }
+  return (
+    <div>
+      <Administradores />
+    </div>
+  );
+}
 
 function EmpleadosContent() {
   return (
     <div>
+      <Empleados />
     </div>
   );
 }
 
 function SolicitudesContent() {
-  return <div>Contenido de Solicitudes</div>;
+  return (
+    <div>
+      <Solicitudes />
+    </div>
+  );
 }
 
 function ClientesContent() {
-  return <div>Contenido de Clientes</div>;
+  return (
+    <div>
+      <Clientes />
+    </div>
+  );
 }
 
 function MiCuentaContent() {
-  return(
+  return (
     <div>
-        <MiCuenta/>
+      <MiCuenta />
     </div>
-  ); 
-
+  );
 }

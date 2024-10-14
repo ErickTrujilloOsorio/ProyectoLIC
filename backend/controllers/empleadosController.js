@@ -29,9 +29,10 @@ exports.login = async (req, res) => {
             }
         );
 
-        return res.json({ 
-            nombre: `${empleado.nombre_empleado} ${empleado.apellido_empleado}`, 
-            token: token 
+        return res.json({
+            idEmpleado: empleado.idEmpleado, // Devolveviendo el idEmpleado
+            nombre: `${empleado.nombre_empleado} ${empleado.apellido_empleado}`,
+            token: token
         });
     } catch (error) {
         return res.status(500).json({
@@ -62,7 +63,7 @@ exports.check = async (req, res) => {
         // Retorna información del empleado
         res.json({ nombre: `${empleado.nombre_empleado} ${empleado.apellido_empleado}` });
     } catch (error) {
-        return res.status(403).json({ message: "Token inválido" }); 
+        return res.status(403).json({ message: "Token inválido" });
     }
 };
 
@@ -74,6 +75,87 @@ exports.agregarEmpleado = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: "Error al agregar empleado: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+
+// Obtener todos los empleados
+exports.obtenerEmpleados = async (req, res) => {
+    const tipoEmpleado = req.query.tipoEmpleado;
+
+    try {
+        const empleados = await Empleado.findAll({
+            where: {
+                tipo_empleado_id: tipoEmpleado
+            }
+        });
+        res.json(empleados);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al obtener empleados: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+
+// Eliminar empleado
+exports.eliminarEmpleado = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+
+        if (!empleado) {
+            return res.status(404).json({ message: "Empleado no encontrado" });
+        }
+
+        await empleado.destroy();
+        res.json({ message: "Empleado eliminado" });
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al eliminar empleado: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+
+// Actualizar empleado
+exports.actualizarEmpleado = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+
+        if (!empleado) {
+            return res.status(404).json({ message: "Empleado no encontrado" });
+        }
+
+        await empleado.update(req.body);
+        res.json(empleado);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al actualizar empleado: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+
+// Obtener empleado por ID
+exports.obtenerEmpleado = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+
+        if (!empleado) {
+            return res.status(404).json({ message: "Empleado no encontrado" });
+        }
+
+        res.json(empleado);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al obtener empleado: " + error.message,
             stack: error.stack
         });
     }
