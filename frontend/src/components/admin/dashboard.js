@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
+import Empleados from "./empleado";
 
 
 //importaciones de las paginas 
@@ -70,7 +71,6 @@ function Sidebar({ setSelectedOption }) {
       </div>
       <nav className="sidebarDashboard">
         <ul>
-          <li onClick={() => setSelectedOption("Administradores")}>Administradores</li>
           <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
           <li onClick={() => setSelectedOption("Solicitudes")}>Solicitudes</li>
           <li onClick={() => setSelectedOption("Clientes")}>Clientes</li>
@@ -92,7 +92,6 @@ function MainContent({ data, selectedOption }) {
     <div className="main-content">
       <h1>{selectedOption === 'Bienvenido' ? `Bienvenido ${data ? data.nombre : "Cargando..."}` : selectedOption}</h1>
       <div className="graphics">
-        {selectedOption === 'Administradores' && <AdminContent />}
         {selectedOption === 'Empleados' && <EmpleadosContent />}
         {selectedOption === 'Solicitudes' && <SolicitudesContent />}
         {selectedOption === 'Clientes' && <ClientesContent />}
@@ -111,8 +110,7 @@ function AdminContent() {
 
 function EmpleadosContent() {
   return (
-    <div>
-    </div>
+    <Empleados/>
   );
 }
 
