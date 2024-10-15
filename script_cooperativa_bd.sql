@@ -18,7 +18,7 @@ USE `cooperativa_db`;
 
 CREATE TABLE IF NOT EXISTS `cooperativa_db`.`estados` (
   `idEstado` INT NOT NULL AUTO_INCREMENT,
-  `estado` VARCHAR(12) NOT NULL,
+  `nombre_estado` VARCHAR(12) NOT NULL,
   `descripcion_estado` MEDIUMTEXT NULL,
   PRIMARY KEY (`idEstado`)
 ) ENGINE = InnoDB;
@@ -125,3 +125,9 @@ INSERT INTO estados VALUES
 INSERT INTO tipos_empleados VALUES
   (1, 'administrador', 'el admin'),
   (2, 'empleado', 'no admin');
+
+INSERT INTO creditos VALUES 
+  (1,'Credito Personal', 7.99, 'Este crédito está destinado a cubrir necesidades personales, como compras importantes, viajes o gastos imprevistos.'),
+  (2, 'Crédito Hipotecario', 9.99, 'Para la compra o mejora de una vivienda, con plazos largos y tasas de interés más bajas'),
+  (3, 'Crédito para Pequeñas Empresas',6.99, 'Este crédito está diseñado para apoyar a emprendedores o pequeñas empresas a financiar su crecimiento o capital de trabajo.')
+  

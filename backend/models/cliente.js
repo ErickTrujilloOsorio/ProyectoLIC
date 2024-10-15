@@ -1,7 +1,6 @@
 const { sequelize, DataTypes } = require('../config/db.js');
-const solicitud = require('./solicitud.js');
 
-const cliente = sequelize.define('cliente',
+const Cliente = sequelize.define('Cliente',
     {
         idCliente: {
             type: DataTypes.INTEGER,
@@ -60,7 +59,5 @@ const cliente = sequelize.define('cliente',
     }
 );
 
-cliente.hasMany(solicitud, { foreignKey: 'cliente_id' });
-
 // Exportamos
-module.exports = cliente;
+module.exports = Cliente;

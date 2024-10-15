@@ -1,8 +1,7 @@
 import { useState } from "react";
-import '../../App.css';
+import '../../css/App.css';
 
 export default function Modal({ isVisible, closeModal, creditoId }) { 
-  console.log('modal ' + creditoId)
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [direccion, setDireccion] = useState('');

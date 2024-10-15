@@ -8,7 +8,6 @@ export default function Servicios() {
     // Función para abrir el modal
     const openModal = (idCredito) => {
         setIdCredito(idCredito);
-        console.log(idCredito);
         setModalVisible(true);
     };
 

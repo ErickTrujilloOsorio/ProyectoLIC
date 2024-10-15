@@ -1,0 +1,131 @@
+/* Estilo login */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginBody {
+    background-color: #dddada;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.containerLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-grow: 1;
+    flex-direction: row; 
+}
+
+.logoLogin {
+    background-color: rgba(74, 93, 115, 0.9); 
+    width: 30%;
+    max-width: 400px; 
+    height: 395px;
+    border-radius: 18px 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoLogin h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logoLogin img {
+    max-width: 30%;
+    max-height: 30%;
+}
+
+.login-box {
+    background-color: rgba(188, 193, 216, 0.9); 
+    padding: 40px; 
+    border-radius: 0 20px 20px 0;
+    width: 70%;
+    height: 395px;
+    max-width: 450px;
+}
+
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#username, #pass{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    border: 1px solid #807d7d;
+}
+
+.button-login{
+    width: 100%;
+    padding: 12px;
+    background-color: #1c6d70;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.button-login :hover {
+    background-color: #2998a0;
+}
+
+/* Media Queries para responsividad */
+@media screen and (max-width: 1024px) {
+    .logo {
+        width: 40%; 
+    }
+
+    .login-box {
+        padding: 30px; 
+    }
+}
+
+@media screen and (max-width: 682px) {
+    .container {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .logoLogin{
+        display: none;
+    }
+
+    .login-box {
+        width: 90%; 
+        border-radius: 20px;
+        height: 350px;
+    }
+
+    h1 {
+        font-size: 20px; 
+    }
+
+    h2 {
+        font-size: 18px; 
+    }
+
+    #username, #pass, .buttonLogin {
+        padding: 10px; 
+    }
+}

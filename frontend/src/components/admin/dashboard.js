@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./css/Dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
+import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
+import Empleados from "./empleado";
+import Solicitudes from "./solicitud";
 
-
-//importaciones de las paginas 
-import AdminTable from "./AdminTable";
-import MiCuenta from "./micuenta";
-import Empleadotable from "./empleadoTable";
 export default function Dashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
@@ -70,23 +67,21 @@ function Sidebar({ setSelectedOption }) {
       <div className="logo">
         <img src="/img/logo.png" alt="Logo login Administrador" />
       </div>
-      <nav>
+      <nav className="sidebarDashboard">
         <ul>
-          <li onClick={() => setSelectedOption("Administradores")}>Administradores</li>
           <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
-          <li onClick={() => setSelectedOption("Solicitudes")}>Solicitudes</li>
-          <li onClick={() => setSelectedOption("Clientes")}>Clientes</li>
-          <li onClick={() => setSelectedOption("Mi Cuenta")}>Mi Cuenta</li>
-          <li onClick={() => handleLogout()}>Cerrar Sesión</li>
+          <li onClick={() => setSelectedOption("Solicitud")}>Solicitudes</li>
+          <li onClick={() => logout()}>Cerrar Sesión</li>
         </ul>
       </nav>
     </div>
   );
 }
 
-function handleLogout() {
+function logout() {
   localStorage.removeItem("token");
   window.location.href = "/admin/login";
+  sessionStorage.clear();
 }
 
 function MainContent({ data, selectedOption }) {
@@ -94,45 +89,22 @@ function MainContent({ data, selectedOption }) {
     <div className="main-content">
       <h1>{selectedOption === 'Bienvenido' ? `Bienvenido ${data ? data.nombre : "Cargando..."}` : selectedOption}</h1>
       <div className="graphics">
-        {selectedOption === 'Administradores' && <AdminContent />}
         {selectedOption === 'Empleados' && <EmpleadosContent />}
-        {selectedOption === 'Solicitudes' && <SolicitudesContent />}
-        {selectedOption === 'Clientes' && <ClientesContent />}
-        {selectedOption === 'Mi Cuenta' && <MiCuentaContent />}
+        {selectedOption === 'Solicitud' && <SolicitudesContent />}
       </div>
     </div>
   );
 }
 
-function AdminContent() {
-    return (
-        <div>
-          <AdminTable />
-        </div>
-      );
-    }
-
 function EmpleadosContent() {
   return (
-    <div>
-      <Empleadotable />
-    </div>
+    <Empleados/>
   );
 }
 
 function SolicitudesContent() {
-  return <div>Contenido de Solicitudes</div>;
-}
-
-function ClientesContent() {
-  return <div>Contenido de Clientes</div>;
-}
-
-function MiCuentaContent() {
   return(
-    <div>
-        <MiCuenta/>
-    </div>
-  ); 
-
+    <Solicitudes/>
+  )
 }
+

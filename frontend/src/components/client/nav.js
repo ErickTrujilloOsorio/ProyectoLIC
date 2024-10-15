@@ -2,7 +2,7 @@ export default function Nav() {
     return (
         <>
             {/* Sección encabezado  */}
-            <header className="bg-primary text-white p-3">
+            <header className="bg-success text-white p-3">
                 <div className="container d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center"> {/* Alineamos verticalmente */}
                         <a href="/">
@@ -48,6 +48,11 @@ export default function Nav() {
                                 <li className="nav-item">
                                     <a className="nav-link text-light" href="/servicios" onMouseEnter={(e) => e.currentTarget.classList.add('bg-light', 'text-dark', 'rounded', 'text-primary')} onMouseLeave={(e) => e.currentTarget.classList.remove('bg-light', 'text-dark', 'text-primary')}>
                                         Servicios
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link text-light" href="/agencias" onMouseEnter={(e) => e.currentTarget.classList.add('bg-light', 'text-dark', 'rounded', 'text-primary')} onMouseLeave={(e) => e.currentTarget.classList.remove('bg-light', 'text-dark', 'text-primary')}>
+                                        Agencias
                                     </a>
                                 </li>
                             </ul>

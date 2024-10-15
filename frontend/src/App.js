@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import Inicio from "./components/client/inicio";
 import QuienesSomos from "./components/client/quienesSomos";
 import Nav from "./components/client/nav";
@@ -7,9 +7,7 @@ import Servicios from "./components/client/servicios";
 import Login from "./components/admin/login";
 import Footer from "./components/client/footer";
 import Dashboard from "./components/admin/dashboard";
-import AdminTable from "./components/admin/AdminTable";
-import MiCuenta from "./components/admin/micuenta";
-import Empleadotable from "./components/admin/empleadoTable";
+import Agencias from "./components/client/agencias"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function PublicLayout({ children }) {
@@ -65,6 +63,14 @@ function App() {
               </PublicLayout>
             }
           />
+          <Route
+            path="/agencias"
+            element={
+              <PublicLayout>
+                <Agencias/>
+              </PublicLayout>
+            }
+          />
 
           {/* Rutas Admin */}
           <Route
@@ -84,26 +90,9 @@ function App() {
             }
           />
           <Route
-            path="admin/adminTable"
+            path="admin/empleados"
             element={
               <PrivateLayout>
-                <AdminTable />
-              </PrivateLayout>
-            }
-          />
-          <Route
-            path="admin/micuenta"
-            element={
-              <PrivateLayout>
-                <MiCuenta />
-              </PrivateLayout>
-            }
-          />
-          <Route
-            path="admin/empleadoTable"
-            element={
-              <PrivateLayout>
-                <Empleadotable/>
               </PrivateLayout>
             }
           />

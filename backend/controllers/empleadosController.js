@@ -30,7 +30,11 @@ exports.login = async (req, res) => {
         );
 
         return res.json({ 
-            nombre: `${empleado.nombre_empleado} ${empleado.apellido_empleado}`, 
+            nombre: `${empleado.nombre_empleado}`,
+            apellido: `${empleado.apellido_empleado}`, 
+            correo: `${empleado.correo_empleado}`,
+            username: `${empleado.username}`,
+            telefono: `${empleado.telefono_empleado}`,
             token: token 
         });
     } catch (error) {
@@ -78,3 +82,54 @@ exports.agregarEmpleado = async (req, res) => {
         });
     }
 };
+
+// Obtener todos los empleados
+exports.getEmpleados = async (req, res) => {
+    try {
+        const empleados = await Empleado.findAll();
+        res.json(empleados);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener empleados: " + error.message });
+    }
+};
+
+exports.eliminarEmpleado = async (req, res) => {
+    const { id } = req.params; // Se asume que el ID se pasa como parámetro en la ruta
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+        if (!empleado) {
+            return res.status(404).json({ message: "Empleado no encontrado" });
+        }
+
+        await empleado.destroy();
+        res.status(204).send(); // Respuesta sin contenido
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al eliminar empleado: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+
+// Actualizar empleado
+exports.actualizarEmpleado = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+        if (!empleado) {
+            return res.status(404).json({ message: "Empleado no encontrado" });
+        }
+
+        // Actualiza el empleado con los nuevos datos
+        await empleado.update(req.body);
+        res.json(empleado);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al actualizar empleado: " + error.message,
+            stack: error.stack
+        });
+    }
+};
+

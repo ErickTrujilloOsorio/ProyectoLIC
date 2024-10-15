@@ -1,48 +1,48 @@
 const { sequelize, DataTypes } = require('../config/db.js');
-const cliente = require('./cliente.js');
-const credito = require('./credito.js');
-const estado = require('./estado.js');
-const empleado = require('./empleado.js');
+const Cliente = require('./cliente.js');
+const Empleado = require('./empleado.js');
+const Estado = require('./estado.js');
+const Credito = require('./credito.js');
 
-const solicitud = sequelize.define(
-    'solicitud',
+const Solicitud = sequelize.define(
+    'Solicitud',
     {
-        idSolicitud:{
+        idSolicitud: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        cliente_id:{
+        cliente_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'clientes',
+                model: Cliente, 
                 key: 'idCliente'
             }
         },
-        empleado_id:{
+        empleado_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'empleados',
+                model: Empleado, 
                 key: 'idEmpleado'
             }
         },
-        estado_id:{
+        estado_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'estados',
-                key: 'idEstado'
+                model: Estado,   
+                key: 'idEstado'  
             }
         },
-        credito_id:{
+        credito_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'creditos',
-                key: 'idCredito'
+                model: Credito,  
+                key: 'idCredito' 
             }
         }
     },
@@ -52,4 +52,4 @@ const solicitud = sequelize.define(
     }
 );
 
-module.exports = solicitud;
+module.exports = Solicitud;
