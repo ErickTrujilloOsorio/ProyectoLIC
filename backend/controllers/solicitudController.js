@@ -1,20 +1,15 @@
 const { sequelize } = require('../config/db');
 const Solicitud = require('../models/solicitud');
-<<<<<<< HEAD
 const Estado = require('../models/estado');
-=======
-const Estado = require('../models/estado'); 
->>>>>>> main
+
+
 exports.obtenerSolicitudes = async (req, res) => {
     try {
         const [solicitudes] = await sequelize.query(
             `SELECT DISTINCT s.idSolicitud, c.nombre_cliente, c.idCliente, c.apellido_cliente, 
                     e.nombre_empleado, e.apellido_empleado, 
-<<<<<<< HEAD
-                    est.nombre_estado, est.descripcion_estado AS estado_descripcion, 
-=======
                     est.estado, est.descripcion_estado AS estado_descripcion, 
->>>>>>> main
+                    est.estado, est.descripcion_estado AS estado_descripcion, 
                     cr.nombre_credito, cr.interes
              FROM solicitudes s
              INNER JOIN clientes c ON s.cliente_id = c.idCliente
@@ -74,21 +69,16 @@ exports.asignarEmpleado = async (req, res) => {
     }
 };
 
-<<<<<<< HEAD
+
 // Asignaremos un estado a una solicitud
-=======
-// Asignar un estado a una solicitud, esperemos funcione pa!
->>>>>>> main
+
+
 exports.asignarEstado = async (req, res) => {
     const { idSolicitud, estado_id } = req.body; 
     try {
         const solicitud = await Solicitud.findByPk(idSolicitud);
-<<<<<<< HEAD
-        const estado = await Estado.findByPk(estado_id);
-=======
-        const estado = await Estado.findByPk(estado_id);  // Busca el estado usando el modelo Estado
->>>>>>> main
 
+        const estado = await Estado.findByPk(estado_id);
         // Verificar si la solicitud y el estado existen
         if (!solicitud) {
             return res.status(404).json({ message: 'Solicitud no encontrada' });
