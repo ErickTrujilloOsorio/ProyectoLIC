@@ -8,8 +8,8 @@ exports.obtenerSolicitudes = async (req, res) => {
         const [solicitudes] = await sequelize.query(
             `SELECT DISTINCT s.idSolicitud, c.nombre_cliente, c.idCliente, c.apellido_cliente, 
                     e.nombre_empleado, e.apellido_empleado, 
-                    est.estado, est.descripcion_estado AS estado_descripcion, 
-                    est.estado, est.descripcion_estado AS estado_descripcion, 
+                    est.nombre_estado, est.descripcion_estado AS estado_descripcion, 
+                    est.nombre_estado, est.descripcion_estado AS estado_descripcion, 
                     cr.nombre_credito, cr.interes
              FROM solicitudes s
              INNER JOIN clientes c ON s.cliente_id = c.idCliente
