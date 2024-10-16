@@ -10,8 +10,6 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
     const [telefono, setTelefono] = useState('');
     const [estado, setEstado] = useState(1);
     const [tipoEmpleado, setTipoEmpleado] = useState(2);
-    const [mensaje, setMensaje] = useState('');
-    const [error, setError] = useState('');
     const [isUpdating, setIsUpdating] = useState(false);
 
     useEffect(() => {
@@ -23,7 +21,7 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
             setCorreo(empleado.correo_empleado);
             setTelefono(empleado.telefono_empleado);
             setEstado(empleado.estado_id);
-            setTipoEmpleado(empleado.tipo_Empleado_id); 
+            setTipoEmpleado(empleado.tipo_Empleado_id);
             setIsUpdating(true);
         } else {
             // Reinicia el formulario si no hay empleado
@@ -39,10 +37,9 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
         setPassword('');
         setCorreo('');
         setTelefono('');
-        setEstado(1); // Valor por defecto
-        setTipoEmpleado(2); // Valor por defecto
-        setIsUpdating(false); // Cambiar al modo registrar
-        setMensaje('');
+        setEstado(1); 
+        setTipoEmpleado(2); 
+        setIsUpdating(false); 
     };
 
     const handleCloseModal = () => {
@@ -58,7 +55,7 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
             apellido_empleado: apellido,
             direccion_empleado: direccion,
             username,
-            ...(isUpdating ? {} : { password }), 
+            ...(isUpdating ? {} : { password }),
             correo_empleado: correo,
             telefono_empleado: telefono,
             tipo_Empleado_id: tipoEmpleado,
@@ -87,38 +84,29 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
             }
 
             if (response.ok) {
-                setMensaje(isUpdating ? 'Empleado actualizado con éxito' : 'Empleado registrado con éxito');
-                setError('');
+                alert(isUpdating ? 'Empleado actualizado con éxito' : 'Empleado registrado con éxito');
                 resetForm();
                 closeModal();
                 cargarEmpleados();
             } else {
                 const errorData = await response.json();
-                setError(`Error: ${errorData.message}`);
-                setMensaje('');
+                alert(`Error: ${errorData.message}`);
             }
         } catch (error) {
-            setError('Error al conectar con el servidor');
+            alert('Error al conectar con el servidor');
         }
     };
 
     return (
         isVisible && (
             <div className="modalEmpleados">
-                <div className="modalBody card">
+                <div className="modalBody cardEmpleado">
                     <h3>{isUpdating ? 'Actualizar Empleado' : 'Registrar Empleado'}</h3>
-                    <div className="d-flex justify-content-between align-items-center">
-                        {error && <p className="text-danger mt-2">{error}</p>}
-                        {mensaje && <p className="text-success mt-2">{mensaje}</p>}
-                        <button type="button" className="close border border-0 bg-transparent" onClick={handleCloseModal}>
-                            <span>&times;</span>
-                        </button>
-                    </div>
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-6 my-2">
                                         <label>Nombre:</label>
                                         <input
                                             type="text"
@@ -227,9 +215,11 @@ export default function Modal({ isVisible, closeModal, empleado, cargarEmpleados
                                     </div>
                                 </div>
                             </div>
-
-                            <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
+                            <button type="submit" className="btn btn-primary my-3" onSubmit={handleSubmit}>
                                 {isUpdating ? 'Actualizar' : 'Registrar'}
+                            </button>
+                            <button type="button" className="btn btn-secondary mx-2" onClick={handleCloseModal}>
+                                Cerrar
                             </button>
                         </form>
                     </div>

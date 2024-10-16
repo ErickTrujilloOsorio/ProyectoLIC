@@ -22,19 +22,20 @@ exports.login = async (req, res) => {
             {
                 id: empleado.idEmpleado,
                 username: empleado.username,
+                tipo: empleado.tipo_empleado_id
             },
             'llave',
             {
                 expiresIn: '1h',
             }
         );
-
         return res.json({ 
             nombre: `${empleado.nombre_empleado}`,
             apellido: `${empleado.apellido_empleado}`, 
             correo: `${empleado.correo_empleado}`,
             username: `${empleado.username}`,
             telefono: `${empleado.telefono_empleado}`,
+            tipo: `${empleado.tipo_empleado_id}`,
             token: token 
         });
     } catch (error) {

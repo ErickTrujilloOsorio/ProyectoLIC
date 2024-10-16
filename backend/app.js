@@ -26,12 +26,14 @@ require('./models/solicitud');
 // Importamos rutas
 const clientesRoutes = require('./routes/clientes');
 const empleadosRoutes = require('./routes/empleados');
-const solicitudesRoutes = require('./routes/solicitudes')
+const solicitudesRoutes = require('./routes/solicitudes');
+const estadosRoutes = require('./routes/estados');
 
 // Endpoints
 app.use('/clientes', clientesRoutes);
 app.use('/admin', empleadosRoutes);
-app.use('/solicitud', solicitudesRoutes)
+app.use('/solicitud', solicitudesRoutes);
+app.use('/estado', estadosRoutes);
 
 // Conexión a la base de datos y sincronización de modelos
 sequelize.authenticate()

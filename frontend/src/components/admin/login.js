@@ -32,6 +32,7 @@ export default function Login() {
                 sessionStorage.setItem('username', data.username); 
                 sessionStorage.setItem('correo', data.correo); 
                 sessionStorage.setItem('telefono', data.telefono); 
+                localStorage.setItem('tipo', data.tipo)
                 navigate('/admin/dashboard');
             } else {
                 const err = await res.json();

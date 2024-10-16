@@ -50,11 +50,11 @@ export default function Modal({ isVisible, closeModal, creditoId }) {
       });
 
       if (response.ok) {
-        setMensaje('Solicitud enviada con éxito.');
+        alert('Solicitud enviada con éxito.');
         handleCloseModal();
       } else {
         const errorData = await response.json();
-        setMensaje(`Error al enviar la solicitud: ${errorData.message}`);
+        alert(`Error al enviar la solicitud: ${errorData.message}`);
       }
     } catch (error) {
       setMensaje('Error al conectar con el servidor.');

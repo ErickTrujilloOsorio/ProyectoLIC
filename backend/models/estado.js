@@ -8,7 +8,7 @@ const Estado = sequelize.define('Estado',
             primaryKey: true,
             autoIncrement: true
         },
-        estado: {
+        nombre_estado: {
             type: DataTypes.STRING(12),
             allowNull: false
         },

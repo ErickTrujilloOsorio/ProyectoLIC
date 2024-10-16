@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
 import ModalAsignacion from './modalAsignacion';
 import ModalDatosCliente from './modalDatosCliente';
+import ModalAsignarEstado from './modalAsignarEstado';
 
 export default function Solicitudes() {
     const [isModalClienteVisible, setModalClienteVisible] = useState(false);
-    const [selectedCliente, setSelectedCliente] = useState([]);
     const [isModalAsignarVisible, setModalAsignarVisible] = useState(false);
+    const [isModalAsignarEstadoVisible, setModalAsignarEstadoVisible] = useState(false); // Estado para el nuevo modal
+    const [selectedCliente, setSelectedCliente] = useState([]);
     const [selectedSolicitud, setSelectedSolicitud] = useState(null);
-    const [solicitudes, setSolicitudes] = useState([]); // Asegúrate de definir el estado de solicitudes
+    const [solicitudes, setSolicitudes] = useState([]);
+    const [tipoEmpleado, setTipoEmpleado] = useState(null);
 
     useEffect(() => {
+        const tipo = localStorage.getItem("tipo");
+        setTipoEmpleado(tipo);
         cargarSolicitudes();
     }, []);
 
@@ -25,7 +30,7 @@ export default function Solicitudes() {
 
     const abrirModalCliente = async (idCliente) => {
         try {
-            const response = await fetch(`http://localhost:5000/clientes/${idCliente}`); 
+            const response = await fetch(`http://localhost:5000/clientes/${idCliente}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los datos del cliente');
             }
@@ -39,7 +44,7 @@ export default function Solicitudes() {
 
     const cerrarModalCliente = () => {
         setModalClienteVisible(false);
-        setSelectedCliente(null); 
+        setSelectedCliente(null);
     };
 
     const abrirModalAsignar = (solicitud) => {
@@ -49,6 +54,17 @@ export default function Solicitudes() {
 
     const cerrarModalAsignar = () => {
         setModalAsignarVisible(false);
+        setSelectedSolicitud(null);
+        cargarSolicitudes();
+    };
+
+    const abrirModalAsignarEstado = (solicitud) => {
+        setSelectedSolicitud(solicitud);
+        setModalAsignarEstadoVisible(true);
+    };
+
+    const cerrarModalAsignarEstado = () => {
+        setModalAsignarEstadoVisible(false);
         setSelectedSolicitud(null);
         cargarSolicitudes();
     };
@@ -74,14 +90,19 @@ export default function Solicitudes() {
                                 <td>{solicitud.nombre_cliente} {solicitud.apellido_cliente}</td>
                                 <td>{solicitud.nombre_empleado ? `${solicitud.nombre_empleado} ${solicitud.apellido_empleado}` : 'No asignado'}</td>
                                 <td>{solicitud.nombre_credito}</td>
-                                <td>{solicitud.nombre_estado} {solicitud.estado_descripcion}</td>
+                                <td>
+                                    <button className="bg-transparent border border-0" type='button' onClick={() => abrirModalAsignarEstado(solicitud)}>
+                                        {solicitud.nombre_estado}
+                                    </button>
+                                </td>
                                 <td>
                                     <button className="btn btn-secondary mx-2" type='button' onClick={() => abrirModalCliente(solicitud.idCliente)}>
                                         Cliente
                                     </button>
-                                    <button className="btn btn-secondary mx-2" type='button' onClick={() => abrirModalAsignar(solicitud)}>
+                                    {tipoEmpleado === "1" && (<button className="btn btn-secondary mx-2" type='button' onClick={() => abrirModalAsignar(solicitud)}>
                                         Asignar
-                                    </button>
+                                    </button>)}
+
                                     <button className="btn btn-danger mx-2">
                                         Eliminar
                                     </button>
@@ -99,11 +120,17 @@ export default function Solicitudes() {
                 <ModalDatosCliente isVisible={isModalClienteVisible} closeModal={cerrarModalCliente} cliente={selectedCliente} />
             )}
             {isModalAsignarVisible && (
-                <ModalAsignacion 
-                isVisible={isModalAsignarVisible} 
-                closeModal={cerrarModalAsignar} 
-                solicitud={selectedSolicitud} 
-            />)}
+                <ModalAsignacion
+                    isVisible={isModalAsignarVisible}
+                    closeModal={cerrarModalAsignar}
+                    solicitud={selectedSolicitud}
+                />)}
+            {isModalAsignarEstadoVisible && (
+                <ModalAsignarEstado
+                    isVisible={isModalAsignarEstadoVisible}
+                    closeModal={cerrarModalAsignarEstado}
+                    solicitud={selectedSolicitud}
+                />)}
         </div>
     );
 }

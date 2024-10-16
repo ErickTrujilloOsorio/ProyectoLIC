@@ -92,7 +92,7 @@ select {
 }
 
 #contactanos {
-  height: 100%;
+  height: 33.2rem;
 }
 
 .form-group {
@@ -184,6 +184,10 @@ button.btn {
 }
 
 .card {
+  height: 27rem;
+}
+
+.cardEmpleado{
   height: auto;
 }
 

@@ -36,7 +36,7 @@ const Empleado = sequelize.define('Empleado',
             type: DataTypes.STRING(8),
             allowNull: false
         },
-        tipo_Empleado_id: {
+        tipo_empleado_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/dashboard.css"; // Archivo CSS global que incluye estilos del sidebar y el contenido
+import { jwtDecode } from "jwt-decode";
+import "../../css/dashboard.css";
 import Empleados from "./empleado";
 import Solicitudes from "./solicitud";
 
@@ -8,7 +9,8 @@ export default function Dashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedOption, setSelectedOption] = useState('Bienvenido'); // Estado para la opción seleccionada
+  const [selectedOption, setSelectedOption] = useState('Bienvenido');
+  const [tipoEmpleado, setTipoEmpleado] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +19,8 @@ export default function Dashboard() {
     if (!token) {
       navigate("/admin/login");
     } else {
+      const decodedToken = jwtDecode(token);
+      setTipoEmpleado(decodedToken.tipo);
       fetch("http://localhost:5000/admin/check", {
         method: "POST",
         headers: {
@@ -55,13 +59,13 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      <Sidebar setSelectedOption={setSelectedOption} />
+      <Sidebar setSelectedOption={setSelectedOption} tipoEmpleado={tipoEmpleado} />
       <MainContent data={data} selectedOption={selectedOption} />
     </div>
   );
 }
 
-function Sidebar({ setSelectedOption }) {
+function Sidebar({ setSelectedOption, tipoEmpleado }) {
   return (
     <div className="sidebar">
       <div className="logo">
@@ -69,7 +73,9 @@ function Sidebar({ setSelectedOption }) {
       </div>
       <nav className="sidebarDashboard">
         <ul>
-          <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
+          {tipoEmpleado === 1 && (
+            <li onClick={() => setSelectedOption("Empleados")}>Empleados</li>
+          )}
           <li onClick={() => setSelectedOption("Solicitud")}>Solicitudes</li>
           <li onClick={() => logout()}>Cerrar Sesión</li>
         </ul>
@@ -98,13 +104,13 @@ function MainContent({ data, selectedOption }) {
 
 function EmpleadosContent() {
   return (
-    <Empleados/>
+    <Empleados />
   );
 }
 
 function SolicitudesContent() {
-  return(
-    <Solicitudes/>
+  return (
+    <Solicitudes />
   )
 }
 
