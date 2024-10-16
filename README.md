@@ -7,4 +7,5 @@ Sistema Web Para Cooperativas by Erick Trujillo, Oscar Villalobos,Geovany Pineda
 
 [Acceder a la carpeta en Google Drive](https://drive.google.com/drive/folders/1uERvek5VaIBTdzL_-B5Hw7lQqAZmCR94?usp=sharing)
 
-[Manual de usuario](https://docs.google.com/document/d/1bq47bW8WNKlsXpQVtUpklx8c7F6IeGBp/edit#heading=h.2s8eyo1)
+[Ver el documento PDF - Manual de Usuario](https://github.com/ErickTrujilloOsorio/ProyectoLIC/blob/main/Manual%20de%20Usuario.pdf)
+
